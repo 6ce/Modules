@@ -1,5 +1,30 @@
 --[[
 	@RBA - A module dedicated to wrapping TextChatCommand logic
+	
+	onCommandRan Example:
+	
+		local giveCashCommand: TextChatCommand = textChatService.GiveCashCommand
+		
+		CommandHandler:onCommandRan(giveCashCommand, function(player, args)
+			if not isPlayerWhitelisted(player) then
+				return false, "You cannot run this command"
+			end
+			
+			local amt = tonumber(args[1])
+			
+			if amt then
+				module:giveCash(player, amt)
+				return true
+			end
+			
+			return false, "You did not give a valid cash amount"
+		end)
+		
+	onCommandErrored Example:
+	
+		CommandHandler:onCommandErrored(function(cmd, player, msg, args, err)
+			warn(`{player.Name} failed to run command '{msg}': {err}`)
+		end)
 ]]
 
 local module = {}
@@ -55,6 +80,9 @@ function module:onCommandRan(
 	end)
 end
 
+--[[
+	Calls the input callback whenever a command callback errors
+]]
 function module:onCommandErrored(
 	callback: OnCommandErroredCallback
 ): RBXScriptConnection
