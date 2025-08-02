@@ -8,7 +8,7 @@ local giveCashCommand = textChatService.Commands.GiveCashCommand
 local function isPlayerWhitelisted(
 	player: Player
 ): boolean
-	local GROUP_ID = 99752736
+	local GROUP_ID = 0
 	local MIN_GROUP_RANK = 250
 	
 	local rank = player:GetRankInGroup(GROUP_ID)
