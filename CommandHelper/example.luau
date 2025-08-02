@@ -5,6 +5,16 @@ local commandHelper = require(game.ServerStorage.CommandHelper)
 
 local giveCashCommand = textChatService.Commands.GiveCashCommand
 
+local function isPlayerWhitelisted(
+	player: Player
+): boolean
+	local GROUP_ID = 99752736
+	local MIN_GROUP_RANK = 250
+	
+	local rank = player:GetRankInGroup(GROUP_ID)
+	return rank >= MIN_GROUP_RANK
+end
+
 local function onGiveCashErrored(
 	cmd: TextChatCommand, 
 	player: Player, 
