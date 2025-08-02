@@ -1,7 +1,7 @@
 local textChatService = game:GetService("TextChatService")
 local serverStorage = game:GetService("ServerStorage")
 
-local commandHelper = require(game.ServerStorage.CommandHelper)
+local commandHelper = require(serverStorage.CommandHelper)
 
 local giveCashCommand = textChatService.Commands.GiveCashCommand
 
