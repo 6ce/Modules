@@ -1,3 +1,5 @@
+-- https://paradoxum-games.github.io/lyra/
+
 local repStorage = game:GetService("ReplicatedStorage")
 local runService = game:GetService('RunService')
 local players = game:GetService("Players")
@@ -59,8 +61,10 @@ local module = {
 					task.spawn(callback, player, newData, oldData)
 				end
 			end
-		}
+		};
 	});
+	
+	Configuration = dataConfig;
 }
 
 export type DataService = typeof(module)
