@@ -7,6 +7,16 @@ local TEMPLATE = {
 	
 }
 
+type DataTransformerFn = (data: PlayerData) -> PlayerData
+export type PlayerData = typeof(TEMPLATE)
+export type ProfileKey = keyof<PlayerData>
+
+type MigrationData = {
+	Fields: { [string]: { [string]: any } };
+	Transforms: { [string]: DataTransformerFn }
+}
+
+
 -- each key in the template will be validated
 -- against this schema 
 local SCHEMA = t.strictInterface({
@@ -15,7 +25,7 @@ local SCHEMA = t.strictInterface({
 
 -- in order to add values or transform them
 -- you must add it here
-local MIGRATIONS = {
+local MIGRATIONS: MigrationData = {
 	Fields = {
 		
 	};
@@ -25,15 +35,12 @@ local MIGRATIONS = {
 	};
 }
 
-export type PlayerData = typeof(TEMPLATE)
-export type ProfileKey = keyof<PlayerData>
-
 return {
 	ProductionDataVersion = 1;
 	StudioDataVersion = 1;
 	IsStudioDataSeparated = false;
-	
 	DataStoreFormat = "PlayerData%s";
+	
 	Schema = SCHEMA;
 	Template = TEMPLATE;
 	Migrations = MIGRATIONS;
