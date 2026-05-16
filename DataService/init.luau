@@ -13,9 +13,9 @@ local lyra = require(script.Parent.Parent.Modules.Lyra)
 local isInStudio = runService:IsStudio()
 
 local dataConfig = require(script.DataConfig)
+
 local storeKey = dataConfig.DataStoreFormat:format(
-	(isInStudio and dataConfig.StudioDataVersion)
-		or dataConfig.ProductionDataVersion
+	(isInStudio and dataConfig.StudioDataVersion) or dataConfig.ProductionDataVersion
 )
 
 if isInStudio and dataConfig.IsStudioDataSeparated then
